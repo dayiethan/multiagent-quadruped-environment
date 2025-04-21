@@ -6,6 +6,7 @@ import imageio
 import isaacgym
 from mqe.utils import get_args
 import torch
+import pdb
 
 from mqe.envs.utils import make_mqe_env, custom_cfg
 
@@ -37,13 +38,13 @@ if __name__ == '__main__':
     # task_name = "go1football-1vs1"
     # task_name = "go1football-2vs2"
     # task_name = "go1sheep-easy"
-    # task_name = "go1sheep-hard"
+    task_name = "go1sheep-hard"
     # task_name = "go1seesaw"
     # task_name = "go1door"
-    task_name = "go1pushbox"
+    # task_name = "go1pushbox"
     # task_name = "go1tug"
     # task_name = "go1wrestling"
-    task_name = "go1rotationdoor"
+    # task_name = "go1rotationdoor"
     # task_name = "go1bridge"
 
     args.num_envs = 1
@@ -58,8 +59,8 @@ if __name__ == '__main__':
     while True:
         # obs, _, _, _ = env.step(0 * torch.tensor([[[1, 0, 0],[1, 0, 0],[1, 0, 0],[1, 0, 0],],],
         #                         dtype=torch.float32, device="cuda").repeat(env.num_envs, 1, 1))
-        obs, _, done, _ = env.step(0 * torch.tensor([[[1, 0, 0],[1, 0, 0],],],
-                                dtype=torch.float32, device="cuda").repeat(env.num_envs, 1, 1))
+        obs, reward, done, info = env.step(torch.tensor([[[1, 0, 0],[1, 0, 0],],], dtype=torch.float32, device="cuda").repeat(env.num_envs, 1, 1))
+        breakpoint()
         # if done.tolist()[0]:
         #     print("done")
         #     frames = env.get_complete_frames()
